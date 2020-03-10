@@ -14,8 +14,8 @@ A mikrokontroller wifin keresztül csatlakozik egy [NTP szerverre](https://www.n
 A kontrollerhez tartozik egy saját készítésű shield, amire a kijelző, a BMP280 és a TH06 van bekötve. A teljes egység egy saját tervezésű 3D tervezett házban van rögzítve.
 
 #### Képek:
-![Image](https://github.com/kris-makes/Wemos-D1-Mini-Weather-Station/master/kepek/img1.jpg?raw=true)
-![Image](https://github.com/kris-makes/Wemos-D1-Mini-Weather-Station/master/kepek/img2.jpg?raw=true)
+![Image](https://github.com/kris-makes/Wemos-D1-Mini-Weather-Station/tree/master/kepek/img1.jpg?raw=true)
+![Image](https://github.com/kris-makes/Wemos-D1-Mini-Weather-Station/tree/master/kepek/img2.jpg?raw=true)
 
 ## Felhasznált könyvtárak
 **Megjelenítés:** [U8g2](https://github.com/olikraus/u8g2)
