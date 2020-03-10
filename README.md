@@ -2,7 +2,7 @@
 Kompakt kijelző és mérőállomás internet alapú idő megjelenítéssel
 
 ## Működés
-A rendszer egy [WEMOS D1 mini](https://3dwarehouse.sketchup.com/model/b3c9daa8-2c69-4b6d-b22c-631123883484/Wemos-D1-mini-V210-ESP8266?hl=hu) alapon fut, erre van kötve egy 128x64-es [OLED kijelzőre](http://www.lcdwiki.com/res/MC130GX_VX/1.3inch_IIC_OLED_Module_MC130GX&MC130VX_User_Manual_EN.pdf) I2C-vel. A lekért adatok vízszintesen görgetve jelennek meg a képernyőn az [u8g2 könyvtár](https://github.com/olikraus/u8g2) használatával.
+A rendszer egy [WEMOS D1 mini](https://3dwarehouse.sketchup.com/model/b3c9daa8-2c69-4b6d-b22c-631123883484/Wemos-D1-mini-V210-ESP8266?hl=hu) alapon fut, erre van kötve egy 128x64-es [OLED kijelző](http://www.lcdwiki.com/res/MC130GX_VX/1.3inch_IIC_OLED_Module_MC130GX&MC130VX_User_Manual_EN.pdf) I2C-vel. A lekért adatok vízszintesen görgetve jelennek meg a képernyőn az [u8g2 könyvtár](https://github.com/olikraus/u8g2) használatával.
 Videó róla [itt](https://youtu.be/lskLDnISdC4).
 
 #### Időjárás állomás
