@@ -24,3 +24,33 @@ A kontrollerhez tartozik egy saját készítésű shield, amire a kijelző, a BM
 **Wifis kompatibilitás:** [Esp8266Wifi](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi)
 **I2C kezelés:** [Wire](https://github.com/esp8266/Arduino/blob/master/libraries/Wire/Wire.h)
 **BMP280**: [Adafruit Sensor](https://github.com/adafruit/Adafruit_Sensor) és [Adafruit BMP280](https://github.com/adafruit/Adafruit_BMP280_Library)
+
+
+
+# English:
+## Mini Weather Station
+Compact display and measuring station with internet based time display.
+
+## Operation
+The system runs on a WEMOS D1 mini base, connected to a 128x64 OLED display with I2C. The requested data is scrolled horizontally on the screen using the u8g2 directory. Video of how it works here. (in the video the altitude is displayed but later changed for humidity)
+
+#### Weather station
+An I2C-connected BMP280 sensor is responsible for measuring temperature and air pressure, and a TH06 sensor for humidity.
+
+#### Time
+The microcontroller connects to an NTP server via Wi-Fi, where it retrieves the current time and day of the week.
+
+## The case
+The controller comes with a self-made shield to which the display, BMP280 and TH06 are wired. The entire unit is housed in a self-designed 3D printed housing.
+
+#### Pictures:
+![Image](https://github.com/kris-makes/Wemos-D1-Mini-Weather-Station/blob/master/kepek/img1.jpg)
+![Image](https://github.com/kris-makes/Wemos-D1-Mini-Weather-Station/blob/master/kepek/img2.jpg)
+
+## Libraries used
+**Show:** [U8g2](https://github.com/olikraus/u8g2)
+**NTP Server:** [NTPClient](https://github.com/arduino-libraries/NTPClient)
+**Manage NTP Client:** [WifiUDP](https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/WiFiUdp.h)
+**Wifi Compatibility:** [Esp8266Wifi](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi)
+**I2C Handling:** [Wire](https://github.com/esp8266/Arduino/blob/master/libraries/Wire/Wire.h)
+**BMP280**: [Adafruit Sensor](https://github.com/adafruit/Adafruit_Sensor) and [Adafruit BMP280](https://github.com/adafruit/Adafruit_BMP280_Library)
