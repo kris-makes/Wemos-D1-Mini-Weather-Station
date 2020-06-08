@@ -24,8 +24,8 @@ int Minutes;
 int Seconds;
 const char *ssid     = "Digi-02265438";     //your ssid in ""
 const char *password = "Panna001";     //your password in ""
-const long utcOffsetInSeconds = 3600;
-char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+const long utcOffsetInSeconds = 7200;
+char daysOfTheWeek[7][13] = {"Vasarnap", "Hetfo", "Kedd", "Szerda", "Csutortok", "Pentek", "Szombat"};
 char time_output[10];
 
 //-----------------------------------------------------------------------------
@@ -50,7 +50,7 @@ void setup() {
     u8g2.firstPage();
     do {
       u8g2.setFont(u8g2_font_sandyforest_tr );
-      u8g2.drawStr((84 - u8g2.getStrWidth("Connecting")) / 2, 11, "Connecting");     //draw progress circles while connecting
+      u8g2.drawStr((84 - u8g2.getStrWidth("Kapcsolodas")) / 2, 11, "Kapcsolodas");     //draw progress circles while connecting
       u8g2.drawCircle(i, 30, 2);
       i = i + 1;
     } while ( u8g2.nextPage() );
@@ -71,6 +71,7 @@ void setup() {
   } while ( u8g2.nextPage() );
   delay(5000);
   u8g2.begin();     //restart display
+  u8g2.enableUTF8Print();    // enable UTF8 support for the Arduino print()
 }
 
 //=============================================================================
@@ -116,26 +117,26 @@ int humidity() {
 //-----------------------------------------------------------------------------
 void draw_sensor() {
   Temperature = (sensor_bmp.readTemperature() - 4.0);
-  Pressure = (sensor_bmp.readPressure() / 100.0F  + 17);
+  Pressure = (sensor_bmp.readPressure() / 100.0F  + 20);
   Humidity = (humidity());
   u8g2.firstPage();
   do {
     u8g2.setDrawColor(1);
     u8g2.setFont(u8g2_font_6x12_mf  );
-    u8g2.drawStr(6, 25, "Temp:      C");     //draw temperature
+    u8g2.drawUTF8(6, 25, "Hom :      C");     //draw temperature
     u8g2.drawCircle(69, 18, 1);
     u8g2.setCursor(39, 25);
     u8g2.print(Temperature, 1);
-    u8g2.drawStr(6, 35, "Pres:");     //draw pressure
+    u8g2.drawStr(6, 35, "Nyom:");     //draw pressure
     u8g2.setCursor(39, 35);
     u8g2.print(Pressure, 1);
-    u8g2.drawStr(6, 45, "Hum :   %");     //draw humidity
+    u8g2.drawStr(6, 45, "Para:   %");     //draw humidity
     u8g2.setCursor(39, 45);
     u8g2.print(Humidity, 1);
     u8g2.drawRBox(0, 0, 84, 15, 4);
     u8g2.setDrawColor(0);
-    u8g2.setFont(u8g2_font_7x14B_mf  );
-    u8g2.drawStr((84 - u8g2.getStrWidth("Weather")) / 2, 13, "Weather"); //draw frame and title
+    u8g2.setFont(u8g2_font_7x14B_tf  );
+    u8g2.drawStr((84 - u8g2.getStrWidth("Idojaras")) / 2, 13, "Idojaras"); //draw frame and title
     u8g2.setDrawColor(1);
     u8g2.drawRFrame(0, 15, 84, 33, 4);
   } while ( u8g2.nextPage() );
@@ -146,7 +147,7 @@ void draw_sensor() {
 //-----------------------------------------------------------------------------
 void scroll_sensor() {
   Temperature = (sensor_bmp.readTemperature() - 4.0);
-  Pressure = (sensor_bmp.readPressure() / 100.0F  + 17);
+  Pressure = (sensor_bmp.readPressure() / 100.0F  + 20);
   Humidity = (humidity());
   timeClient.update();
   Hours = timeClient.getHours();
@@ -160,20 +161,20 @@ void scroll_sensor() {
       u8g2.setDrawColor(1);
       //fade sensor out
       u8g2.setFont(u8g2_font_6x12_mf  );
-      u8g2.drawStr(6 - i, 25, "Temp:      C");     //draw temperature
+      u8g2.drawStr(6 - i, 25, "Hom :      C");     //draw temperature
       u8g2.drawCircle(69 - i, 18, 1);
       u8g2.setCursor(39 - i, 25);
       u8g2.print(Temperature, 1);
-      u8g2.drawStr(6 - i, 35, "Pres:");     //draw pressure
+      u8g2.drawStr(6 - i, 35, "Nyom:");     //draw pressure
       u8g2.setCursor(39 - i, 35);
       u8g2.print(Pressure, 1);
-      u8g2.drawStr(6 - i, 45, "Hum :   %");     //draw humidity
+      u8g2.drawStr(6 - i, 45, "Para:   %");     //draw humidity
       u8g2.setCursor(39 - i, 45);
       u8g2.print(Humidity, 1);
       u8g2.drawRBox(0, 0, 84, 15, 4);
       u8g2.setDrawColor(0);
-      u8g2.setFont(u8g2_font_7x14B_mf  );
-      u8g2.drawStr((84 - u8g2.getStrWidth("Weather")) / 2 - i, 13, "Weather");
+      u8g2.setFont(u8g2_font_7x14B_tf  );
+      u8g2.drawStr((84 - u8g2.getStrWidth("Idojaras")) / 2 - i, 13, "Idojaras");
       u8g2.setDrawColor(1);
       u8g2.drawRFrame(0, 15, 84, 33, 4);
 
@@ -182,7 +183,7 @@ void scroll_sensor() {
       u8g2.setFont(u8g2_font_logisoso20_tn);
       u8g2.setCursor(8 + 84 - i, 42);    //draw time
       u8g2.print(time_output);
-      u8g2.setFont(u8g2_font_7x14B_mf  );
+      u8g2.setFont(u8g2_font_7x14B_tf  );
       u8g2.drawRBox(0, 0, 84, 15, 4);
       u8g2.setDrawColor(0);
       u8g2.drawStr((84 - u8g2.getStrWidth(daysOfTheWeek[timeClient.getDay()])) / 2 + 84 - i, 13, daysOfTheWeek[timeClient.getDay()]); //draw frame and day
@@ -213,7 +214,7 @@ void draw_time() {
     u8g2.setFont(u8g2_font_logisoso20_tn);
     u8g2.setCursor(8, 42);    //draw time
     u8g2.print(time_output);
-    u8g2.setFont(u8g2_font_7x14B_mf  );
+    u8g2.setFont(u8g2_font_7x14B_tf  );
     u8g2.drawRBox(0, 0, 84, 15, 4);
     u8g2.setDrawColor(0);
     u8g2.drawStr((84 - u8g2.getStrWidth(daysOfTheWeek[timeClient.getDay()])) / 2, 13, daysOfTheWeek[timeClient.getDay()]); //draw frame and day
@@ -227,7 +228,7 @@ void draw_time() {
 //-----------------------------------------------------------------------------
 void scroll_time() {
   Temperature = (sensor_bmp.readTemperature() - 4.0);
-  Pressure = (sensor_bmp.readPressure() / 100.0F  + 17);
+  Pressure = (sensor_bmp.readPressure() / 100.0F  + 20);
   Humidity = (humidity());
   timeClient.update();
   Hours = timeClient.getHours();
@@ -244,7 +245,7 @@ void scroll_time() {
       u8g2.setFont(u8g2_font_logisoso20_tn);
       u8g2.setCursor(8 - i, 42);    //draw time
       u8g2.print(time_output);
-      u8g2.setFont(u8g2_font_7x14B_mf  );
+      u8g2.setFont(u8g2_font_7x14B_tf  );
       u8g2.drawRBox(0, 0, 84, 15, 4);
       u8g2.setDrawColor(0);
       u8g2.drawStr((84 - u8g2.getStrWidth(daysOfTheWeek[timeClient.getDay()])) / 2 - i, 13, daysOfTheWeek[timeClient.getDay()]); //draw frame and day
@@ -253,20 +254,20 @@ void scroll_time() {
 
       //sensor in
       u8g2.setFont(u8g2_font_6x12_mf  );
-      u8g2.drawStr(6 + 84 - i, 25, "Temp:      C");     //draw temperature
+      u8g2.drawStr(6 + 84 - i, 25, "Hom :      C");     //draw temperature
       u8g2.drawCircle(69 + 84 - i, 18, 1);
       u8g2.setCursor(39 + 84 - i, 25);
       u8g2.print(Temperature, 1);
-      u8g2.drawStr(6 + 84 - i, 35, "Pres:");     //draw pressure
+      u8g2.drawStr(6 + 84 - i, 35, "Nyom:");     //draw pressure
       u8g2.setCursor(39 + 84 - i, 35);
       u8g2.print(Pressure, 1);
-      u8g2.drawStr(6 + 84 - i, 45, "Hum :   %");     //draw humidity
+      u8g2.drawStr(6 + 84 - i, 45, "Para:   %");     //draw humidity
       u8g2.setCursor(39 + 84 - i, 45);
       u8g2.print(Humidity, 1);
       u8g2.drawRBox(0, 0, 84, 15, 4);
       u8g2.setDrawColor(0);
-      u8g2.setFont(u8g2_font_7x14B_mf  );
-      u8g2.drawStr((84 - u8g2.getStrWidth("Weather")) / 2 + 84 - i, 13, "Weather");
+      u8g2.setFont(u8g2_font_7x14B_tf  );
+      u8g2.drawStr((84 - u8g2.getStrWidth("Idojaras")) / 2 + 84 - i, 13, "Idojaras");
       u8g2.setDrawColor(1);
       u8g2.drawRFrame(0, 15, 84, 33, 4);
     } while ( u8g2.nextPage() );
